@@ -71,11 +71,11 @@ spec:
       containers:
       - name: mariadb
         image: mariadb:10.11
-        # command:
-        # - "mysqld"
-        # - "--innodb-buffer-pool-size=512M"
-        # - "--innodb-flush-log-at-trx-commit=2"
-        # - "--skip-name-resolve"
+        command:
+        - "mysqld"
+        - "--innodb-buffer-pool-size=512M"
+        - "--innodb-flush-log-at-trx-commit=2"
+        - "--skip-name-resolve"
         env:
           - name: MARIADB_ROOT_PASSWORD
             valueFrom:
