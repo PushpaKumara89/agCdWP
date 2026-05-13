@@ -65,17 +65,25 @@ spec:
       labels:
         app: mariadb
     spec:
-      securityContext:      # Container එකට එළියෙන් මේක දාන්න
+      initContainers:
+      - name: fix-permissions
+        image: busybox
+        command: ["sh", "-c", "chown -R 999:999 /var/lib/mysql"]
+        volumeMounts:
+        - name: maria-data
+          mountPath: /var/lib/mysql
+          
+      securityContext:      
         runAsUser: 999
         fsGroup: 999
       containers:
       - name: mariadb
         image: mariadb:10.11
-        # command:
-        # - "mysqld"
-        # - "--innodb-buffer-pool-size=512M"
-        # - "--innodb-flush-log-at-trx-commit=2"
-        # - "--skip-name-resolve"
+        command:
+        - "mysqld"
+        - "--innodb-buffer-pool-size=512M"
+        - "--innodb-flush-log-at-trx-commit=2"
+        - "--skip-name-resolve"
         env:
           - name: MARIADB_ROOT_PASSWORD
             valueFrom:
@@ -106,7 +114,7 @@ spec:
       storageClassName: standard
       resources:
         requests:
-          storage: 10Gi
+          storage: 2Gi
 
 ---
 apiVersion: v1
