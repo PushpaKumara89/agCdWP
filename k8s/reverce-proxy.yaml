@@ -40,9 +40,9 @@ kind: Service
 metadata:
   name: proxcy-svc
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
-  - port: 80
+  - port: 3030
     targetPort: 80
   selector:
     app: nginx-proxy
