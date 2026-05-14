@@ -4,6 +4,7 @@ metadata:
   name: wordpress-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/backend-protocol: "FCGI"
 spec:
   rules:
   - host: my-wordpress.local
