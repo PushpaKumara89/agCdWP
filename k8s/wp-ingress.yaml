@@ -7,7 +7,7 @@ metadata:
 spec:
   rules:
   - host: my-wordpress.local
-  - http:
+    http:
       paths:
       - path: /
         pathType: Prefix
