@@ -16,6 +16,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: wp-service
+            name: proxcy-svc
             port:
-              number: 9000
+              number: 80
